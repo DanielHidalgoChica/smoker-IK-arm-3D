@@ -5,6 +5,41 @@ A **Godot 4** project demonstrating a custom **Cyclic Coordinate Descent (CCD)**
 ![Godot](https://img.shields.io/badge/Godot-4.x-blue?logo=godot-engine)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+---
+<table>
+  <tr>
+    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/f7c40b4f-1314-44b0-aa87-483ce186f245" width="450"></td>
+    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/e939c904-7184-4eee-a8bb-e4b2e50b8971" width="450"></td>
+  </tr>
+  <tr>
+    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/306c75f2-d00a-4f7f-ac26-687daf7b6e9a" width="450"></td>
+    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/3265d7c8-670c-4bd9-96c2-030c1c8748dc" width="450"></td>
+  </tr>
+</table>
+
+---
+
+## 🚀 Quick Start
+
+### Option 1: Download Pre-built Binaries (Recommended)
+
+Download the latest release for your platform:
+
+| Platform | Download |
+|----------|----------|
+| 🐧 Linux | [IKArmDemo.x86_64](https://github.com/DanielHidalgoChica/smoker-IK-arm-3D/releases/download/1.0.0/smokerIKArm_Linuz_v1.0.0.zip) |
+| 🪟 Windows | [IKArmDemo.exe](https://github.com/DanielHidalgoChica/smoker-IK-arm-3D/releases/download/1.0.0/smokerIKArm_Windows_v1.0.0.zip) |
+
+
+### Option 2: Import into Godot Editor
+
+1. Install [Godot 4.x](https://godotengine.org/download)
+2. Clone this repository:
+   ```git clone https://github.com/DanielHidalgoChica/smoker-IK-arm-3D.git```
+3. Import project on Godot
+4. Press **F5** to run
+---
+
 ## 🎯 Project Overview
 
 This project implements a real-time IK system that allows a character's arm to reach target positions in 3D space. The arm can bring a cigarette to the character's mouth or extend it toward clicked positions in the scene.
@@ -14,7 +49,7 @@ This project implements a real-time IK system that allows a character's arm to r
 - **Custom CCD IK Solver** - Lightweight, iterative algorithm with joint limits
 - **Smooth Animation** - Interpolated movement using `lerp_angle()` for natural motion
 - **Dual End-Effectors** - Switch between cigarette tip and mouth tip
-- **Interactive Control** - Click anywhere to set targets via raycasting
+- **Interactive Control** - Click anywhere on the table to set targets via raycasting
 - **Debug Visualization** - Real-time display of rotation axes and correction vectors
 
 ---
@@ -24,6 +59,9 @@ This project implements a real-time IK system that allows a character's arm to r
 ### Overview
 
 CCD is an iterative IK algorithm that adjusts one joint at a time, cycling through the kinematic chain from the **end-effector toward the root**. Each iteration reduces the distance between the end-effector and the goal.
+
+![CCD Geometric Diagram](https://github.com/user-attachments/assets/442f4e7a-47ec-4e58-87fc-299306c0aebd)
+> *CCD iteration in 2D (Source: [Ryan Juckett](https://www.ryanjuckett.com/cyclic-coordinate-descent-in-2d/))*
 
 ### The Geometric Core
 
@@ -44,19 +82,18 @@ Each joint rotates around a single axis $\hat{\mathbf{a}}$ (e.g., X, Y, or Z in 
 
 We project both vectors onto the plane perpendicular to $\hat{\mathbf{a}}$:
 
-$$\mathbf{v}_{cur}^{\perp} = \mathbf{v}_{cur} - (\mathbf{v}_{cur} \cdot \hat{\mathbf{a}}) \hat{\mathbf{a}}$$
+$$\mathbf{v}_{cur}^{p} = \mathbf{v}_{cur} - (\mathbf{v}_{cur} \cdot \hat{\mathbf{a}}) \hat{\mathbf{a}}$$
 
-$$\mathbf{v}_{tgt}^{\perp} = \mathbf{v}_{tgt} - (\mathbf{v}_{tgt} \cdot \hat{\mathbf{a}}) \hat{\mathbf{a}}$$
+$$\mathbf{v}_{tgt}^{p} = \mathbf{v}_{tgt} - (\mathbf{v}_{tgt} \cdot \hat{\mathbf{a}}) \hat{\mathbf{a}}$$
 
 #### Step 3: Compute the Signed Angle
+Assuming every vector is normalized (we do it) the signed correction angle for the joint can be easily computed:
 
-The rotation angle $\theta$ between the projections is computed using the **atan2** function for proper sign handling:
+$$\sin(\theta) = \hat{\mathbf{a}} \cdot (\hat{\mathbf{v}}_{cur}^{p} \times \hat{\mathbf{v}}_{tgt}^{p})$$
 
-$$\sin(\theta) = \hat{\mathbf{a}} \cdot (\hat{\mathbf{v}}_{cur}^{\perp} \times \hat{\mathbf{v}}_{tgt}^{\perp})$$
+$$\cos(\theta) = \hat{\mathbf{v}}_{cur}^{p} \cdot \hat{\mathbf{v}}_{tgt}^{p}$$
 
-$$\cos(\theta) = \hat{\mathbf{v}}_{cur}^{\perp} \cdot \hat{\mathbf{v}}_{tgt}^{\perp}$$
-
-$$\theta = \text{atan2}(\sin(\theta), \cos(\theta))$$
+$$\theta = \arctan(\sin(\theta), \cos(\theta))$$
 
 #### Step 4: Apply with Damping and Limits
 
@@ -80,18 +117,25 @@ The arm consists of 4 joints with different rotation axes:
 
 ---
 
-## 🎮 Controls
+## 🎮 Forward Kinematics Controls
 
-| Input | Action |
-|-------|--------|
-| **Left Click** | Set target position (raycast) |
-| `ik_solve` | Solve IK and animate to mouth |
-| `ik_step` | Single CCD iteration (debug) |
-| `tip_mouth` | Use mouth tip as end-effector |
-| `tip_fire` | Use fire tip as end-effector |
-| `return-default` | Return to rest pose |
-
+| Action | Input |
+| :--- | :--- |
+| **Shoulder Joint** | `1`, `2` keys |
+| **Elbow Joint** | `3`, `4` keys |
+| **Wrist Pitch** | `5`, `6` keys |
+| **Wrist Roll** | `7`, `8` keys |
 ---
+
+## ⚙️ Inverse Kinematics (IK) Controls
+
+| Action | Input |
+| :--- | :--- |
+| **Step effector towards mouth** | `Space` |
+| **Move effector smoothly to mouth** | `Enter` |
+| **Move effector to green table** | `Left Click` (on table) |
+| **Snap effector to cigarette tip** | `F` key |
+| **Snap effector to cigarette filter** | `M` key |
 
 ## 🔧 Implementation Details
 
@@ -123,9 +167,12 @@ current_euler.x = lerp_angle(current_euler.x, goal, smoothing_speed * delta)
 
 ---
 
+## Acknowledgments
+The core concept for this project was inspired by the 2D Inverse Kinematics implementation found in [Gab-ani/ik-experiments](https://github.com/Gab-ani/ik-experiments). This repository adapts and extends those foundational ideas into a 3D environment.
+
 ## 👤 Author
 
-**Daniel Hidalgo Chica**  
+**Daniel Hidalgo Chica**  
 Universidad de Granada
 
 ---
