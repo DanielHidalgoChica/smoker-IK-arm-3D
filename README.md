@@ -44,15 +44,6 @@ Download the latest release for your platform:
 
 This project implements a real-time IK system that allows a character's arm to reach target positions in 3D space. The arm can bring a cigarette to the character's mouth or extend it toward clicked positions in the scene.
 
-### Features
-
-- **Custom CCD IK Solver** - Lightweight, iterative algorithm with joint limits
-- **Smooth Animation** - Interpolated movement using `lerp_angle()` for natural motion
-- **Dual End-Effectors** - Switch between cigarette tip and mouth tip
-- **Interactive Control** - Click anywhere on the table to set targets via raycasting
-- **Debug Visualization** - Real-time display of rotation axes and correction vectors
-
----
 
 ## 🧮 The Algorithm: Cyclic Coordinate Descent
 
@@ -110,8 +101,8 @@ The arm consists of 4 joints with different rotation axes:
 
 | Joint | Node | Rotation Axis | Range |
 |-------|------|---------------|-------|
-| Shoulder | `shoulder_pivot` | X (pitch) | -180° to 0° |
-| Elbow | `elbow_pivot` | Z (flexion) | 0° to 90° |
+| Shoulder | `shoulder_pivot` | X | -180° to 0° |
+| Elbow | `elbow_pivot` | Z | 0° to 90° |
 | Wrist Roll | `wrist_roll_pivot` | Y (roll) | -130° to -40° |
 | Wrist Pitch | `wrist_pitch_pivot` | Z (pitch) | -60° to 60° |
 
@@ -141,23 +132,13 @@ The arm consists of 4 joints with different rotation axes:
 
 ### Forward Kinematics (FK) Cache
 
-The solver uses a **cached FK computation** to evaluate end-effector positions without modifying or reading from the scene:
+For efficiency, the solver uses a **cached FK computation** to evaluate end-effector positions without modifying or reading from the scene:
 
 ```gdscript
 func get_cached_transform3d(output: Array[float], upto_idx: int) -> Transform3D
 ```
 
-This allows mathematically testing hypothetical joint configurations before applying them.
 
-### Smooth Animation
-
-Instead of snapping to solutions, the solver stores target angles and interpolates in `_process()`:
-
-```gdscript
-current_euler.x = lerp_angle(current_euler.x, goal, smoothing_speed * delta)
-```
-
----
 
 ## 🛠️ Technologies
 
