@@ -219,7 +219,7 @@ func step(debug) -> Array[float]:
 	# --- INICIO DEBUG VISUAL ---
 	# 1. Dibuja el EJE de rotación actual (AZUL)
 	#    Si este eje no es perpendicular al movimiento que esperas, algo falla en axis_local.
-	var anim_time : float = 0.1
+	var anim_time : float = 0.2
 	if (debug):
 		DebugDraw3D.draw_arrow(joint_pos, joint_pos + axis_world * 0.5, Color.BLUE, 0.1,false,anim_time)
 
