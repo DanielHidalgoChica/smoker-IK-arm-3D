@@ -95,6 +95,8 @@ The correction is clamped for stability and joint constraints:
 new_angle = clamp(current_angle + δ, joint_min, joint_max)
 ```
 
+---
+
 ## 🦾 Kinematic Chain
 
 The arm consists of 4 joints with different rotation axes:
@@ -106,7 +108,7 @@ The arm consists of 4 joints with different rotation axes:
 | Wrist Roll | `wrist_roll_pivot` | Y (roll) | -130° to -40° |
 | Wrist Pitch | `wrist_pitch_pivot` | Z (pitch) | -60° to 60° |
 
----
+
 
 ## 🎮 Forward Kinematics Controls
 
@@ -116,7 +118,7 @@ The arm consists of 4 joints with different rotation axes:
 | **Elbow Joint** | `3`, `4` keys |
 | **Wrist Pitch** | `5`, `6` keys |
 | **Wrist Roll** | `7`, `8` keys |
----
+
 
 ## ⚙️ Inverse Kinematics (IK) Controls
 
@@ -127,6 +129,8 @@ The arm consists of 4 joints with different rotation axes:
 | **Move effector to green table** | `Left Click` (on table) |
 | **Snap effector to cigarette tip** | `F` key |
 | **Snap effector to cigarette filter** | `M` key |
+
+---
 
 ## 🔧 Implementation Details
 
