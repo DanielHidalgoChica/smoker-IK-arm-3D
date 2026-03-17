@@ -9,8 +9,8 @@ A **Godot 4** project demonstrating a custom **Cyclic Coordinate Descent (CCD)**
 
 <table>
   <tr>
-    <td valign="top"><img alt="CCD Visualization" src="https://github.com/user-attachments/assets/ef29899a-3f87-4fce-80dd-88004538da91" width="475"></td>
-    <td valign="top"><img alt="Real time demo" src="https://github.com/user-attachments/assets/e0a2c688-99c5-4b7f-bb76-f10369f60567" width="475"></td>
+    <td valign="top"><img alt="CCD Visualization" src="https://github.com/user-attachments/assets/ef29899a-3f87-4fce-80dd-88004538da91" width="450"></td>
+    <td valign="top"><img alt="Real time demo" src="https://github.com/user-attachments/assets/e0a2c688-99c5-4b7f-bb76-f10369f60567" width="450"></td>
   </tr>
   <tr>
     <td valign="top">Visualization of the Cyclic Coordinate Descent algorithm. The blue, red, and green vectors are the joint, current and target vectors respectively.</td>
