@@ -7,14 +7,22 @@ A **Godot 4** project demonstrating a custom **Cyclic Coordinate Descent (CCD)**
 
 ---
 
-<table>
+<table width="100%">
   <tr>
-    <td align="center" valign="top"><img alt="CCD Visualization" src="https://github.com/user-attachments/assets/ef29899a-3f87-4fce-80dd-88004538da91" width="360"></td>
-    <td align="center" valign="top"><img alt="Real time demo" src="https://github.com/user-attachments/assets/e0a2c688-99c5-4b7f-bb76-f10369f60567" width="360"></td>
+    <td width="50%" align="center" valign="top">
+      <img alt="CCD Visualization" src="https://github.com/user-attachments/assets/ef29899a-3f87-4fce-80dd-88004538da91" width="360">
+    </td>
+    <td width="50%" align="center" valign="top">
+      <img alt="Real time demo" src="https://github.com/user-attachments/assets/e0a2c688-99c5-4b7f-bb76-f10369f60567" width="360">
+    </td>
   </tr>
   <tr>
-    <td align="left" valign="top">Visualization of the Cyclic Coordinate Descent algorithm. The blue, red, and green vectors are the joint, current and target vectors respectively.</td>
-    <td align="left" valign="top">The algorithm working in real time.</td>
+    <td width="50%" align="left" valign="top">
+      Visualization of the Cyclic Coordinate Descent algorithm. The blue, red, and green vectors are the joint, current and target vectors respectively.
+    </td>
+    <td width="50%" align="left" valign="top">
+      The algorithm working in real time.
+    </td>
   </tr>
 </table>
 
