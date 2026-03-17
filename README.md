@@ -6,18 +6,17 @@ A **Godot 4** project demonstrating a custom **Cyclic Coordinate Descent (CCD)**
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
-<table>
-  <tr>
-    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/ef29899a-3f87-4fce-80dd-88004538da91" width="450"></td>
-    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/e939c904-7184-4eee-a8bb-e4b2e50b8971" width="450"></td>
-  </tr>
-  <tr>
-    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/306c75f2-d00a-4f7f-ac26-687daf7b6e9a" width="450"></td>
-    <td valign="top"><img alt="image" src="https://github.com/user-attachments/assets/3265d7c8-670c-4bd9-96c2-030c1c8748dc" width="450"></td>
-  </tr>
-</table>
 
-![git_iterative_2](https://github.com/user-attachments/assets/ef29899a-3f87-4fce-80dd-88004538da91)
+<table>
+  <tr>
+    <td valign="top"><img alt="CCD Visualization" src="https://github.com/user-attachments/assets/ef29899a-3f87-4fce-80dd-88004538da91" width="475"></td>
+    <td valign="top"><img alt="Real time demo" src="https://github.com/user-attachments/assets/e0a2c688-99c5-4b7f-bb76-f10369f60567" width="475"></td>
+  </tr>
+  <tr>
+    <td valign="top">Visualization of the Cyclic Coordinate Descent algorithm. The blue, red, and green vectors are the joint, current and target vectors respectively.</td>
+    <td valign="top">The algorithm working in real time.</td>
+  </tr>
+</table>
 
 ---
 
